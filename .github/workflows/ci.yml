@@ -1,0 +1,33 @@
+name: Java CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '11'
+
+    - name: Compile the application
+      run: javac src/Addition.java
+
+    - name: Run tests
+      run: java -cp src Addition
+
+    - name: Deploy application
+      run: |
+        echo "Deploying the application..."
+        # Add your deployment commands here
+        # Example: scp -r src/Addition.java user@yourserver:/path/to/deploy

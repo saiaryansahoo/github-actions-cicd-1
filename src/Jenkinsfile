@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/saiaryansahoo/github-actions-cicd-1'
+            }
+        }
+
+        stage('Compile') {
+            steps {
+                sh 'javac src/addition.java'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'java -cp src addition'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                echo "Deploying the application..."
+                # Add your deployment commands here
+                # Example: scp -r src/Addition.java user@yourserver:/path/to/deploy
+                '''
+            }
+        }
+    }
+}

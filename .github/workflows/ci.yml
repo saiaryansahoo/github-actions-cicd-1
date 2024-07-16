@@ -21,10 +21,10 @@ jobs:
         java-version: '11'
 
     - name: Compile the application
-      run: javac src/Addition.java
+      run: javac src/addition.java
 
     - name: Run tests
-      run: java -cp src Addition
+      run: java -cp src addition
 
     - name: Deploy application
       run: |
